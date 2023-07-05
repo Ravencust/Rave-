@@ -1,0 +1,100 @@
+ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()local Window = Library.CreateLib("mainlog beta ", "DarkTheme")
+
+local Tab = Window:NewTab("script")
+
+local Section = Tab:NewSection("SL")
+Section:NewLabel("yx")
+
+Section:NewButton("game script", "ButtonInfo", function()
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/OWJBWKQLAISH/GigaChad-Hub/main/GigaChad%20Hub%20V1'))()
+end)
+
+Section:NewButton("icehub", "ButtonInfo", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))() 
+end)
+
+
+local Section = Tab:NewSection("bido")
+Section:NewButton("fly gui", "ButtonInfo", function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/BidoSkinsYT/BidoSkinsYT/main/Bido%20Skins%20V1.6"))()
+end)
+
+
+
+Section:NewButton(" fly script", "ButtonInfo", function()
+  loadstring(game:HttpGet(('https://pastebin.com/raw/YvKv4AuY'),true))();
+end)
+
+
+local Section = Tab:NewSection("blox fruit")
+
+Section:NewButton("blox fruits", "ButtonInfo", function()
+    loadstring(game:HttpGet("https://scriptblox.com/raw/UPDATE-16-Blox-Fruits-20-scripts-READ-DESC-9032"))()loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-the-best-script-you-see-in-BF-try-and-get-free-premeum-10957"))()
+end)
+
+Section:NewButton("neva hub", "for box fruit", function()
+  loadstring(game:HttpGet('https://raw.githubusercontent.com/VEZ2/NEVAHUB/main/2'))()
+end)
+
+local Tab = Window:NewTab("admin")
+   
+local Section = Tab:NewSection("Admin script")
+
+Section:NewButton("nameless admin", "ButtonInfo", function()
+    loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Nameless-Admin-10833"))()
+end)
+
+Section:NewButton("universal admin", "ButtonInfo", function()
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
+end)
+
+Section:NewButton("fate admin", "ButtonInfo", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))()
+end)
+
+local Tab = Window:NewTab("Fe hub")
+
+local Section = Tab:NewSection("Fe script ")
+
+Section:NewButton("gelaktek hub", "Fe hat Fe non hats", function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/toldblock/GelatekHub/main/Main.lua"))()
+end)
+
+Section:NewButton("pendulum", "ButtonInfo", function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/Tescalus/Pendulum-Hubs-Source/main/Pendulum%20Hub%20V5.lua"))()
+end)
+    
+      
+   
+local Tab = Window:NewTab("XCM log")
+    
+        
+    local Section = Tab:NewSection("XCM log ")
+
+  
+Section:NewButton("moon hub", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/IlikeyocutgHAH/MoonUI-v13-102-SCRIPTS/main/MoonUI%20v13!"))()
+end)
+
+
+Section:NewButton("dmainx", "ButtonInfo", function()
+    loadstring(game:HttpGet("https://scriptblox.com/raw/DomainX_254"))()
+end)
+
+
+Section:NewButton("vhub", "ButtonInfo", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/2642/Created/VHub"))()
+end)
+
+Section:NewButton("shades", "ButtonInfo", function()
+ loadstring(game:HttpGet(('https://pastefy.app/xXkUxA0P/raw'),true))()
+end)
+
+Section:NewButton("admin panel", "ButtonInfo", function()
+    loadstring(game:HttpGet(('https://pastefy.app/Oic24KzG/raw'),true))()
+end)
+
+Section:NewButton("britishhubv9", "ButtonInfo", function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/RobloxArceusXScript/ProtectedLol/main/BritishHubV9'))()
+End)
