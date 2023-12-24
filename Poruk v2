@@ -1,0 +1,163 @@
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+local Window = Library.CreateLib("poruk v2", "DarkTheme")
+
+local Tab = Window:NewTab("main tab")
+
+local Section = Tab:NewSection("main")
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "special iconex"
+gui.Parent = game.CoreGui
+
+Section:NewButton("script searcher", "script searcher", function()
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/ScriptSearcher"))()
+end)
+
+Section:NewButton("FFJ script ", "FFJ script", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/FFJ1/Roblox-Exploits/main/scripts/autoparry.lua"))()
+end)
+
+Section:NewButton("joe hub", "joe hub", function()
+loadstring(game:HttpGet("https://scriptblox.com/raw/UPD-Blade-Ball-JoeHubZ-9579"))()
+end)
+
+Section:NewButton("hold for spam", "auto parry", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Spam",true))()
+end)
+
+Section:NewButton("Wii hub", "auto parry", function()
+loadstring(Game:HttpGet("https://pastebin.com/raw/bsWW7irh"))()
+end)
+
+Section:NewButton("auto parry", "auto parry", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry",true))()
+end)
+
+
+Section:NewButton("auto spam", "auto parry", function()
+loadstring(game:HttpGet("https://pastebin.com/raw/yRcWbSvp"))()
+end)
+
+Section:NewButton("auto detect", "auto parry", function()
+loadstring(game:HttpGet("https://pastebin.com/raw/ZQDbsBgx"))()
+end)
+
+
+local Tab = Window:NewTab("fe script")
+local Section = Tab:NewSection("fe load")
+
+
+Section:NewButton("fe hub", "auto parry", function()
+loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-fe-hub-7605"))()
+end)
+
+
+
+local Tab = Window:NewTab("fps boost")
+local Section = Tab:NewSection("main")
+
+Section:NewButton("fps boost", "auto parry", function()
+loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-FPS-BOOSTER-SCRIPT-4904"))()
+end)
+
+
+Section:NewButton("fps unlocker ", "auto parry", function()
+loadstring(game:HttpGet("https://scriptblox.com/raw/Baseplate-Fps-Unlocker-7185"))()
+end)
+
+
+local Tab = Window:NewTab("ui maker")
+local Section = Tab:NewSection("main")
+
+Section:NewButton("ui creator", "auto parry", function()
+loadstring(game:HttpGet(('https://pastefy.app/EOgPqinS/raw'),true))()
+end)
+
+
+local Tab = Window:NewTab("blox fruit")
+local Section = Tab:NewSection("main")
+
+Section:NewButton("Mtriet", "blox fruit", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Minhtriettt/Free-Script/main/MTriet-Hub.lua"))() 
+end)
+
+Section:NewButton("fruit finder", "auto parry", function()
+loadstring(game:HttpGet("https://scriptblox.com/raw/Blox-Fruits-OP-Fruit-Finder-Script-8849"))()
+end)
+
+Section:NewButton("mekori hub", "auto parry", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Domadicoof/Domadicoof/main/NewHubX.txt"))()
+end)
+
+Section:NewButton("VectorHub", "auto parry", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Tuxoz/VectorHub/main/MBPC"))()
+end)
+
+
+local Tab = Window:NewTab("credits")
+
+local Section = Tab:NewSection("made by- gamelog")
+
+local Section = Tab:NewSection("youtube - iconex")
+
+
+
+Section:NewButton("bedol hub", "auto parry", function()
+ loadstring(game:HttpGet('https://raw.githubusercontent.com/nqxlOfc/Loaders/main/Blade_Ball.lua'))()
+end)
+
+Section:NewButton("darkraiv", "auto parry", function()
+ loadstring(game:HttpGet("https://pastefy.app/y3MGGd9n/raw"))()
+end)
+
+Section:NewButton("berserk hub", "auto parry", function()
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/samirayt/Whitelist/main/Whitelist%20Pago"))()
+end)
+
+Section:NewButton("joebiden update", "auto parry", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/JoeBidenhub/JoeBidenZ-Hub/main/Fixed",true))()
+end)
+
+Section:NewButton("makuri", "auto parry", function()
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/Domadicoof/Domadicoof/main/NewHubX.txt"))()
+ end)
+
+Section:NewButton("eminx", "auto parry", function()
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/EminenceXLua/Blade-your-Balls/main/BladeBallLoaderV2.lua"))()
+end)
+
+Section:NewButton("apple hub", "auto parry", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ImTienNguyenZ/AppleHub/main/LoaderBF"))()
+end)
+
+Section:NewButton("project x", "auto parry", function()
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/DenDenZYT/DenDenZ-On-YouTube/main/PROJECT%20X%20KEYSYSTEM"))()
+end)
+
+Section:NewButton("atreus hub", "auto parry", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DenDenZYT/DenDenZ-On-YouTube/main/Atreus%20Hub%20KEYSYSTEM"))()
+end)
+
+Section:NewButton("darkai", "auto parry", function()
+loadstring(game:HttpGet("https://pastefy.app/scPne8wv/raw"))()
+end)
+
+
+local Tab = Window:NewTab("arm sim ")
+local Section = Tab:NewSection("main")
+
+Section:NewButton("Tuff hub", "auto parry", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ThisIsTuff/ArmWrestleSim/main/ArmWrestleSim.lua"))()
+end)
+
+local Tab = Window:NewTab("fine script")
+ 
+local Section = Tab:NewSection("main")
+
+
+Section:NewButton("unknow name", "auto parry", function()
+ loadstring(game:HttpGet("https://gist.githubusercontent.com/goinglikeatrainlol/c19adfa90a95db3fb8fcea27a87d3254/raw/8a84b455a0ad6eb75df333dfc7598916d0547eb8/mysticware%2520remake"))()
+end)
+
+Section:NewButton("hyper", "auto parry", function()
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/DookDekDEE/All-Script/main/hp.lua"))()
+end)
