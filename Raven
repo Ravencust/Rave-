@@ -1,100 +1,484 @@
- local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()local Window = Library.CreateLib("mainlog beta ", "DarkTheme")
+-- Load the DrRay library from the GitHub repository Library
+local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
 
-local Tab = Window:NewTab("script")
+-- Create a new window and set its title and theme
+local window = DrRayLibrary:Load("meta vision revamp", "Default")
 
-local Section = Tab:NewSection("SL")
-Section:NewLabel("yx")
+-- Create the first tab with an image ID
+local tab1 = DrRayLibrary.newTab("blue lock rivals ðŸ”µ", "ImageIdHere")
 
-Section:NewButton("game script", "ButtonInfo", function()
-   loadstring(game:HttpGet('https://raw.githubusercontent.com/OWJBWKQLAISH/GigaChad-Hub/main/GigaChad%20Hub%20V1'))()
-end)
+tab.newButton("basic jump script", "made by me", function()
+local player = game.Players.LocalPlayer
 
-Section:NewButton("icehub", "ButtonInfo", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))() 
-end)
+-- Create the ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = player:FindFirstChild("PlayerGui") or player:WaitForChild("PlayerGui")
 
+-- Create the Jump Button
+local jumpButton = Instance.new("TextButton")
+jumpButton.Parent = screenGui
+jumpButton.Size = UDim2.new(0.2, 0, 0.1, 0) -- Normal size
+jumpButton.Position = UDim2.new(0.4, 0, 0.8, 0) -- Lower center
+jumpButton.Text = "Jump"
+jumpButton.TextScaled = true
+jumpButton.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
+jumpButton.TextColor3 = Color3.new(1, 1, 1) -- White text
+jumpButton.BorderSizePixel = 3
+jumpButton.BorderColor3 = Color3.new(1, 1, 1) -- White border
+jumpButton.Font = Enum.Font.SourceSansBold
+jumpButton.AutoButtonColor = true
 
-local Section = Tab:NewSection("bido")
-Section:NewButton("fly gui", "ButtonInfo", function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/BidoSkinsYT/BidoSkinsYT/main/Bido%20Skins%20V1.6"))()
-end)
+-- Variables
+local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+local rootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+local ball = workspace:FindFirstChild("Ball")
+local isJumping = false
 
+-- Jump mechanics
+local JUMP_FORCE = 80
+local FOLLOW_SPEED = 10
+local BALL_REDIRECTION_STRENGTH = 50
 
+-- Function to find the ball dynamically
+local function findBall()
+    for _, obj in pairs(workspace:GetChildren()) do
+        if obj:IsA("BasePart") and obj.Name == "Ball" then
+            return obj
+        end
+    end
+    return nil
+end
 
-Section:NewButton(" fly script", "ButtonInfo", function()
-  loadstring(game:HttpGet(('https://pastebin.com/raw/YvKv4AuY'),true))();
-end)
+ball = findBall()
 
-
-local Section = Tab:NewSection("blox fruit")
-
-Section:NewButton("blox fruits", "ButtonInfo", function()
-    loadstring(game:HttpGet("https://scriptblox.com/raw/UPDATE-16-Blox-Fruits-20-scripts-READ-DESC-9032"))()loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-the-best-script-you-see-in-BF-try-and-get-free-premeum-10957"))()
-end)
-
-Section:NewButton("neva hub", "for box fruit", function()
-  loadstring(game:HttpGet('https://raw.githubusercontent.com/VEZ2/NEVAHUB/main/2'))()
-end)
-
-local Tab = Window:NewTab("admin")
-   
-local Section = Tab:NewSection("Admin script")
-
-Section:NewButton("nameless admin", "ButtonInfo", function()
-    loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Nameless-Admin-10833"))()
-end)
-
-Section:NewButton("universal admin", "ButtonInfo", function()
-    loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
-end)
-
-Section:NewButton("fate admin", "ButtonInfo", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))()
-end)
-
-local Tab = Window:NewTab("Fe hub")
-
-local Section = Tab:NewSection("Fe script ")
-
-Section:NewButton("gelaktek hub", "Fe hat Fe non hats", function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/toldblock/GelatekHub/main/Main.lua"))()
-end)
-
-Section:NewButton("pendulum", "ButtonInfo", function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/Tescalus/Pendulum-Hubs-Source/main/Pendulum%20Hub%20V5.lua"))()
-end)
+-- Jump function with advanced movement
+local function makePlayerJump()
+    if not humanoid or not rootPart then return end
     
-      
-   
-local Tab = Window:NewTab("XCM log")
-    
+    humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+    rootPart.Velocity = Vector3.new(rootPart.Velocity.X, JUMP_FORCE, rootPart.Velocity.Z)
+    isJumping = true
+end
+
+-- Redirect Ball on Contact
+if ball then
+    ball.Touched:Connect(function(hit)
+        if hit.Parent == player.Character and isJumping then
+            local impactDirection = (ball.Position - rootPart.Position).unit
+            ball.Velocity = impactDirection * BALL_REDIRECTION_STRENGTH + Vector3.new(0, 10, 0)
+            isJumping = false
+        end
+    end)
+else
+    warn("No ball found! Ensure the ball is named 'Ball'.")
+end
+
+-- Smooth tracking towards the ball mid-air
+game:GetService("RunService").Heartbeat:Connect(function()
+    if isJumping and ball then
+        local ballPosition = ball.Position
+        local playerPosition = rootPart.Position
+        local direction = (ballPosition - playerPosition).unit
+
+        -- Apply directional force toward the ball
+        local newVelocity = Vector3.new(direction.X * FOLLOW_SPEED, rootPart.Velocity.Y, direction.Z * FOLLOW_SPEED)
+        rootPart.Velocity = rootPart.Velocity:Lerp(newVelocity, 0.2)
+    end
+end)
+
+-- Connect the button press to the jump function
+jumpButton.Activated:Connect(function()
+    print("Jump button pressed!") -- Debug message
+    makePlayerJump()
+end)
+    print('Hello!')
+end)
+
+tab.newButton("ghost hub", "credits to ghostplayer", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub'))()
+    print('Hello!')
+end)
+
+tab.newButton("no cooldown", "best for trolling", function()
+local C=require(game:GetService("ReplicatedStorage").Controllers.AbilityController)
+local o=C.AbilityCooldown C.AbilityCooldown=function(s,n,...)return o(s,n,0,...)end
+    print('Hello!')
+end)
+
+tab.newButton("enemy hitbox expander", "helps you guide your self to the enemy", function()
+local hitboxEnabled = true -- Set to true to enable hitbox expander by default
+local hitboxSize = Vector3.new(12, 12, 12) -- Increase enemy hitbox size
+local ballSize = Vector3.new(15, 15, 15) -- Increase football size
+
+-- Function to modify opponent's hitbox size
+local function updateHitboxes()
+    for _, player in pairs(game.Players:GetPlayers()) do
+        if player ~= game.Players.LocalPlayer and player.Character then
+            local hitbox = player.Character:FindFirstChild("HumanoidRootPart")
+            if hitbox then
+                hitbox.Size = hitboxEnabled and hitboxSize or Vector3.new(2, 2, 1)
+                hitbox.Transparency = hitboxEnabled and 0.5 or 1
+                hitbox.Material = hitboxEnabled and Enum.Material.ForceField or Enum.Material.Plastic
+            end
+        end
+    end
+end
+
+-- Function to modify football size on the field
+local function updateFootballSize()
+    for _, obj in pairs(workspace:GetChildren()) do
+        if obj:IsA("Part") and obj.Name:lower():find("football") then
+            obj.Size = hitboxEnabled and ballSize or Vector3.new(5, 5, 5)
+            obj.Material = hitboxEnabled and Enum.Material.Neon or Enum.Material.SmoothPlastic
+            obj.Transparency = hitboxEnabled and 0.2 or 0
+        end
+    end
+end
+
+-- Main function to toggle hitbox and ball size
+local function toggleFeatures()
+    hitboxEnabled = not hitboxEnabled
+    updateHitboxes()
+    updateFootballSize()
+end
+
+-- Mobile UI Button (Separate from Main Tab)
+local toggleButton = Instance.new("TextButton")
+toggleButton.Parent = game.CoreGui
+toggleButton.Size = UDim2.new(0, 120, 0, 50)
+toggleButton.Position = UDim2.new(0.85, 0, 0.8, 0)
+toggleButton.Text = "Toggle"
+toggleButton.BackgroundColor3 = Color3.fromRGB(0, 180, 180)
+toggleButton.TextScaled = true
+toggleButton.TextColor3 = Color3.new(1, 1, 1)
+toggleButton.MouseButton1Click:Connect(toggleFeatures)
+
+-- Auto-update hitbox when new players join
+game.Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function()
+        task.wait(1)
+        if hitboxEnabled then updateHitboxes() end
+    end)
+end)
+
+-- Auto-update football size when a new football appears
+workspace.ChildAdded:Connect(function(obj)
+    if obj:IsA("Part") and obj.Name:lower():find("football") then
+        task.wait(1)
+        if hitboxEnabled then updateFootballSize() end
+    end
+end)
+
+-- Initial update to enable hitbox expander on script run
+updateHitboxes()
+updateFootballSize()
+    print('Hello!')
+end)
+
+tab.newButton("auto spin", "best", function()
+---auto spin
+loadstring(game:HttpGet("https://ghostplayer352.github.io/Authorization/"))()Ioad("7bf9ebe208d1b369e614ba6bd6a6bc71")
+    print('Hello!')
+end)
+
+tab.newButton("ball expander", "Prints Hello!", function()
+-- Settings for Ball Processing
+local sizeMultiplier = 10 -- Adjust this value as needed
+local maxSizeMultiplier = 15 -- Set a maximum size multiplier to prevent glitches
+local transparency = 0.5
+local enforceBoundaries = true
+local mobileDeviceOnly = true
+local gameBounds = Vector3.new(500, 500, 500)
+
+-- Function to Detect Balls in the Workspace
+local function detectBalls()
+    local balls = {}
+    for _, obj in pairs(workspace:GetChildren()) do
+        if obj:IsA("Model") or obj:IsA("BasePart") then
+            if obj.Name:lower():find("ball") then
+                table.insert(balls, obj)
+            end
+        end
+    end
+    return balls
+end
+
+-- Function to Process Each Ball
+local function processBall(ball)
+    local ballParts = ball:IsA("Model") and ball:GetDescendants() or {ball}
+
+    -- Clamp the sizeMultiplier to prevent it from being too large
+    local clampedSizeMultiplier = math.min(sizeMultiplier, maxSizeMultiplier)
+
+    for _, part in pairs(ballParts) do
+        if part:IsA("BasePart") then
+            local newSize = Vector3.new(clampedSizeMultiplier, clampedSizeMultiplier, clampedSizeMultiplier)
+            part.Size = newSize
+            part.Anchored = false
+            part.CanCollide = true -- Ensure the ball can collide with other objects
+            part.Transparency = 0 -- Ensure the ball is fully opaque
+            -- Ensure the part's color is not set to purple
+        end
+    end
+end
+
+-- Auto Dribble Settings
+if not getgenv().AutoDribbleSettings then
+    getgenv().AutoDribbleSettings = {
+        Enabled = true,
+        range = 30
+    }
+end
+
+-- Service Shortcuts
+local settings = getgenv().AutoDribbleSettings
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+
+-- Local Player
+local LocalPlayer = Players.LocalPlayer or Players.PlayerAdded:Wait()
+
+-- Function to Get Character Components
+local function getCharacterComponents()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    local humanoid = character:WaitForChild("Humanoid")
+    return character, humanoidRootPart, humanoid
+end
+
+-- Initialize Character Components
+local Character, HumanoidRootPart, Humanoid = getCharacterComponents()
+LocalPlayer.CharacterAdded:Connect(function()
+    Character, HumanoidRootPart, Humanoid = getCharacterComponents()
+end)
+
+-- Services & Modules
+local BallService = ReplicatedStorage.Packages.Knit.Services.BallService.RE.Dribble
+local Animations = require(ReplicatedStorage.Assets.Animations)
+
+-- AI-Powered Decision Making for Dribble Optimization
+local function aiDribbleOptimization(distance)
+    local baseSpeed = 1
+    local maxSpeed = 2
+    return math.clamp(baseSpeed + ((10 - distance) / 10), baseSpeed, maxSpeed)
+end
+
+-- Load Dribble Animation
+local function loadDribbleAnimation(style)
+    if Animations.Dribbles[style] then
+        local animation = Instance.new("Animation")
+        animation.AnimationId = Animations.Dribbles[style]
+        return Humanoid:LoadAnimation(animation)
+    end
+end
+
+-- Detect Opponent Conditions (Sliding or Stopped)
+local function isOpponentVulnerable(player)
+    if player ~= LocalPlayer and player.Character then
+        local char = player.Character
+        local slidingValue = char.Values and char.Values:FindFirstChild("Sliding")
+        local humanoid = char:FindFirstChildOfClass("Humanoid")
+
+        return (slidingValue and slidingValue.Value) or (humanoid and humanoid.MoveDirection.Magnitude == 0 and humanoid.WalkSpeed == 0)
+    end
+    return false
+end
+
+-- Check if Player is an Opponent
+local function isOpponent(player)
+    return LocalPlayer.Team and player.Team and LocalPlayer.Team ~= player.Team
+end
+
+-- Execute Dribble Action
+local function executeDribble(distance)
+    if settings.Enabled and Character.Values and Character.Values.HasBall.Value then
+        BallService:FireServer()
         
-    local Section = Tab:NewSection("XCM log ")
+        -- AI-enhanced dribble speed
+        local playerStyle = LocalPlayer.PlayerStats.Style.Value
+        local dribbleAnim = loadDribbleAnimation(playerStyle)
+        if dribbleAnim then
+            dribbleAnim:Play()
+            dribbleAnim:AdjustSpeed(aiDribbleOptimization(distance))
+        end
+        
+        -- Ball positioning
+        local football = workspace:FindFirstChild("Football")
+        if football then
+            football.AssemblyLinearVelocity = Vector3.zero
+            football.CFrame = HumanoidRootPart.CFrame * CFrame.new(0, 0, -2.5) -- Adjusted position to avoid clipping into the ground
+        end
+    end
+end
 
-  
-Section:NewButton("moon hub", "ButtonInfo", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/IlikeyocutgHAH/MoonUI-v13-102-SCRIPTS/main/MoonUI%20v13!"))()
+-- Main Execution Loop for Dribble
+RunService.Heartbeat:Connect(function()
+    if settings.Enabled and Character and HumanoidRootPart then
+        for _, player in pairs(Players:GetPlayers()) do
+            if isOpponent(player) and isOpponentVulnerable(player) then
+                local opponentRootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+                if opponentRootPart then
+                    local distance = (opponentRootPart.Position - HumanoidRootPart.Position).Magnitude
+                    if distance < settings.range then
+                        executeDribble(distance)
+                        break
+                    end
+                end
+            end
+        end
+    end
+end)
+
+-- RunService Stepped Connection for Ball Processing
+RunService.Stepped:Connect(function()
+    for _, ball in ipairs(detectBalls()) do
+        processBall(ball)
+    end
+end)
+
+-- Key input to trigger UI libraries
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if not gameProcessed then
+        if input.KeyCode == Enum.KeyCode.U then
+            -- Add your code to trigger the UI library here
+            print("Key U pressed - Triggering UI library")
+            -- Example: require the UI library and initialize it
+            -- local UILibrary = require(game.ReplicatedStorage.UI.UILibrary)
+            -- UILibrary:Initialize()
+        end
+    end
+end)
+    print('Hello!')
+end)
+
+tab.newButton("the best auto dribble script", ":)", function()
+if not getgenv().AutoDribbleSettings then getgenv().AutoDribbleSettings={
+    Enabled = true,
+    range = 30
+}
+end
+local S,R,P,U=getgenv().AutoDribbleSettings,game:GetService"ReplicatedStorage",game:GetService"Players",game:GetService"RunService"
+local L=P.LocalPlayer or P.PlayerAdded:Wait()
+local function i()local c=L.Character or L.CharacterAdded:Wait()return c,c:WaitForChild"HumanoidRootPart",c:WaitForChild"Humanoid"end
+local C,H,M=i()L.CharacterAdded:Connect(function()C,H,M=i()end)
+local B=R.Packages.Knit.Services.BallService.RE.Dribble
+local A=require(R.Assets.Animations)
+local G=function(s)if A.Dribbles[s]then local a=Instance.new"Animation"a.AnimationId=A.Dribbles[s]return M:LoadAnimation(a)end end
+local T=function(p)if p~=L and p.Character then local c=p.Character local v=c.Values and c.Values.Sliding local h=c:FindFirstChildOfClass"Humanoid"return(v and v.Value)or(h and h.MoveDirection.Magnitude>0 and h.WalkSpeed==0)end end
+local O=function(p)return L.Team and p.Team and L.Team~=p.Team end
+local D=function(d)if S.Enabled and C.Values and C.Values.HasBall.Value then B:FireServer()local s=L.PlayerStats.Style.Value local t=G(s)if t then t:Play()t:AdjustSpeed(math.clamp(1+(10-d)/10,1,2))end local f=workspace:FindFirstChild"Football"if f then f.AssemblyLinearVelocity=Vector3.new()f.CFrame=H.CFrame*CFrame.new(0,-2.5,0)end end end
+U.Heartbeat:Connect(function()if S.Enabled and C and H then for _,p in pairs(P:GetPlayers())do if O(p)and T(p)then local r=p.Character and p.Character:FindFirstChild"HumanoidRootPart"if r then local d=(r.Position-H.Position).Magnitude if d<S.range then D(d)break end end end end end end)
+    print('Hello!')
 end)
 
 
-Section:NewButton("dmainx", "ButtonInfo", function()
-    loadstring(game:HttpGet("https://scriptblox.com/raw/DomainX_254"))()
+-- Create the first tab with an image ID
+local tab1 = DrRayLibrary.newTab("tsb ðŸŸ¥", "ImageIdHere")
+
+tab.newButton("auto block", "credits to notpaki", function()
+getgenv().GeneralDistance = 14 -- Close range attacks
+getgenv().SpecialDistance = 30 -- Long range attacks
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Cyborg883/AutoBlock/refs/heads/main/Notpaki"))()
+    print('Hello!')
+end)
+
+tab.newButton("soon", "Prints Hello!", function()
+    print('Hello!')
 end)
 
 
-Section:NewButton("vhub", "ButtonInfo", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/2642/Created/VHub"))()
+tab.newButton("soon", "Prints Hello!", function()
+    print('Hello!')
 end)
 
-Section:NewButton("shades", "ButtonInfo", function()
- loadstring(game:HttpGet(('https://pastefy.app/xXkUxA0P/raw'),true))()
+-- Create the first tab with an image ID
+local tab1 = DrRayLibrary.newTab("combat warriors", "ImageIdHere")
+
+tab.newButton("auto parry", "Prints Hello!", function()
+local lp = game.Players.LocalPlayer
+ 
+local animationInfo = {}
+ 
+function getInfo(id)
+  local success, info = pcall(function()
+      return game:GetService("MarketplaceService"):GetProductInfo(id)
+  end)
+  if success then
+      return info
+  end
+  return {Name=''}
+end
+function block(player)
+  keypress(0x46)
+  wait()
+  keyrelease(0x46)
+end
+ 
+local AnimNames = {
+  'Slash',
+  'Swing',
+  'Sword'
+}
+ 
+function playerAdded(v)
+    local function charadded(char)
+      local humanoid = char:WaitForChild("Humanoid", 5)
+      if humanoid then
+          humanoid.AnimationPlayed:Connect(function(track)
+              local info = animationInfo[track.Animation.AnimationId]
+              if not info then
+                  info = getInfo(tonumber(track.Animation.AnimationId:match("%d+")))
+                  animationInfo[track.Animation.AnimationId] = info
+              end
+ 
+              if (lp.Character and lp.Character:FindFirstChild("Head") and v.Character:FindFirstChild("Head")) then
+                  local mag = (v.Character.Head.Position - lp.Character.Head.Position).Magnitude
+                  if mag < 15  then
+ 
+                      for _, animName in pairs(AnimNames) do
+                          if info.Name:match(animName) then
+                              pcall(block, v)
+                          end
+                      end
+ 
+                  end
+              end
+          end)
+      end
+  end
+ 
+  if v.Character then
+      charadded(v.Character)
+  end
+  v.CharacterAdded:Connect(charadded)
+end
+ 
+for i,v in pairs(game.Players:GetPlayers()) do
+   if v ~= lp then
+       playerAdded(v)
+   end
+end
+ 
+game.Players.PlayerAdded:Connect(playerAdded)
+    print('Hello!')
 end)
 
-Section:NewButton("admin panel", "ButtonInfo", function()
-    loadstring(game:HttpGet(('https://pastefy.app/Oic24KzG/raw'),true))()
+-- Create the first tab with an image ID
+local tab1 = DrRayLibrary.newTab("credits", "ImageIdHere")
+
+tab.newButton("man your stupid", "Prints Hello!", function()
+    print('Hello!')
 end)
 
-Section:NewButton("britishhubv9", "ButtonInfo", function()
+tab.newButton("notpaki", "for auto block", function()
+    print('Hello!')
+end)
 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/RobloxArceusXScript/ProtectedLol/main/BritishHubV9'))()
-End)
+tab.newButton("credits to all of the owners", "Prints Hello!", function()
+    print('Hello!')
+end)
+
+
