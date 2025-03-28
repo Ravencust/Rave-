@@ -96,8 +96,8 @@ tab1.newButton("the best auto dribble script", ":)", function()
     print('Hello!')
 end)
 
-tab4.newButton("control ball", "Prints Hello!", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Ravencust/Rave-/main/Poruk%20v2", true))()
+tab1.newButton("control ball", "Prints Hello!", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Ravencust/Rave-/main/Poruk%20v2", true))()
     print('Hello!')
 end)
 
@@ -187,10 +187,10 @@ tab4.newButton("credits to all of the owners", "Prints Hello!", function()
     print('Hello!')
 end)
 
--- Create the fourth tab
-local tab3 = DrRayLibrary.newTab("universal", "ImageIdHere")
+-- Create the fifth tab (universal)
+local tab5 = DrRayLibrary.newTab("universal", "ImageIdHere")
 
-tab4.newButton("script searcher", "Prints Hello!", function()
- loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/ScriptSearcher"))()
+tab5.newButton("script searcher", "Prints Hello!", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/ScriptSearcher"))()
     print('Hello!')
 end)
