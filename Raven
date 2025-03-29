@@ -4,7 +4,7 @@
 
 -- Create the first tab local tab1 = DrRayLibrary.newTab("blr", "ImageIdHere")
 
-tab1.newButton("ghost hub", "credits to ghostplayer", function() loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub'))() print('Hello!') end)
+tab1.newButton("ghost hub", "fun", function() loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub'))() print('Hello!') end)
 
 tab1.newButton("no cooldown", "best for trolling", function() local C = require(game:GetService("ReplicatedStorage").Controllers.AbilityController) local o = C.AbilityCooldown C.AbilityCooldown = function(s, n, ...) return o(s, n, 0, ...) end print('Hello!') end)
 
@@ -16,7 +16,9 @@ tab1.newButton("the best auto dribble script", ":)", function() if not getgenv()
 
 tab1.newButton("control ball", "Prints Hello!", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Ravencust/Rave-/main/Poruk%20v2", true))() print('Hello!') end)
 
--- Create the second tab local tab2 = DrRayLibrary.newTab("tsb script", "ImageIdHere")
+
+-- Create the fourth tab local tab3 = DrRayLibrary.newTab("tsb", "ImageIdHere")
+
 
 tab2.newButton("auto block", "credits to notpaki", function() getgenv().GeneralDistance = 14 getgenv().SpecialDistance = 30 loadstring(game:HttpGet("https://raw.githubusercontent.com/Cyborg883/AutoBlock/refs/heads/main/Notpaki"))() print('Hello!') end)
 
