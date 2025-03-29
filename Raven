@@ -91,7 +91,7 @@ tab1.newButton("the best auto dribble script", ":)", function()
     print('Hello!')
 end)
 
-tab4.newButton("control ball", "Prints Hello!", function()
+tab1.newButton("control ball", "Prints Hello!", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Ravencust/Rave-/main/Poruk%20v2", true))()
     print('Hello!')
 end)
