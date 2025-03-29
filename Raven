@@ -101,6 +101,7 @@ tab1.newButton("control ball", "Prints Hello!", function()
     print('Hello!')
 end)
 
+
 -- Create the second tab
 local tab2 = DrRayLibrary.newTab("tsb script", "ImageIdHere")
 
@@ -118,7 +119,7 @@ end)
 -- Create the third tab
 local tab3 = DrRayLibrary.newTab("cw", "ImageIdHere")
 
-tab3.newButton("auto party", "young so", function() loadstring(game:HttpGet("https://ghostplayer352.github.io/Authorization/"))()Ioad("943699720307ac95b0c331d75c2b43ba")
+tab3.newButton("auto parry", "young so", function() loadstring(game:HttpGet("https://ghostplayer352.github.io/Authorization/"))()Ioad("943699720307ac95b0c331d75c2b43ba")
     print('Hello!')
 end)
 
@@ -146,3 +147,12 @@ tab5.newButton("script searcher", "Prints Hello!", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/ScriptSearcher"))()
     print('Hello!')
 end)
+
+-- Create the sixth tab (basket ball zero)
+local tab5 = DrRayLibrary.newTab("basketball zero", "ImageIdHere")
+
+tab6.newButton("auto spin", "best", function()
+loadstring(game:HttpGet("https://gist.githubusercontent.com/mellamonano/bf1834f3fd8c0cb7d69e5c21eb6c014a/raw/f91cf5097834be21442554c577082ef2298f9ae9/gistfile1.txt",true))()
+end)
+
+
