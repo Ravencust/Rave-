@@ -173,10 +173,19 @@ end)
 local tab4 = DrRayLibrary.newTab("new", "ImageIdHere")
 
 tab4.newButton("shoot far", "bt zero", function()
+loadstring(game:HttpGet("https://gist.githubusercontent.com/mellamonano/bf1834f3fd8c0cb7d69e5c21eb6c014a/raw/f91cf5097834be21442554c577082ef2298f9ae9/gistfile1.txt",true))()
     print('Hello!')
 end)
 
 tab3.newButton("script searcher", "Prints Hello!", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/ScriptSearcher"))()
     print('Hello!')
 end)
+
+tab4.newButton("control ball", "fun", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Ravencust/Rave-/refs/heads/main/Poruk%20v2", true))()
+    print('Hello!')
+end)
+
+
+
 
