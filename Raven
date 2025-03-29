@@ -170,31 +170,13 @@ tab3.newButton("auto parry", "Auto blocks attacks", function()
 end)
 
 -- Create the fourth tab
-local tab4 = DrRayLibrary.newTab("credits", "ImageIdHere")
+local tab4 = DrRayLibrary.newTab("new", "ImageIdHere")
 
-tab4.newButton("man your stupid", "Prints Hello!", function()
+tab4.newButton("shoot far", "bt zero", function()
     print('Hello!')
 end)
 
-tab4.newButton("notpaki", "for auto block", function()
+tab3.newButton("script searcher", "Prints Hello!", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/ScriptSearcher"))()
     print('Hello!')
 end)
 
-tab4.newButton("credits to all of the owners", "Prints Hello!", function()
-    print('Hello!')
-end)
-
--- Create the fourth tab
-local tab3 = DrRayLibrary.newTab("universal", "ImageIdHere")
-
-tab3.newButton("script searcher", "Prints Hello!", function()
- loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/ScriptSearcher"))()
-    print('Hello!')
-end)
-
-
--- Create the fourth tab
-local tab3 = DrRayLibrary.newTab("basketball zero", "ImageIdHere")
-
-tab4.newButton("script searcher", "Prints Hello!", function() loadstring(game:HttpGet("https://gist.githubusercontent.com/mellamonano/bf1834f3fd8c0cb7d69e5c21eb6c014a/raw/f91cf5097834be21442554c577082ef2298f9ae9/gistfile1.txt",true))()
-end)
