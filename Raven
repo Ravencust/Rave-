@@ -7,24 +7,23 @@ local window = DrRayLibrary:Load("meta vision revamp", "Default")
 -- Create the first tab
 local tab1 = DrRayLibrary.newTab("blue lock", "ImageIdHere")
 
-tab1.newButton("no cooldown", "best for trolling", function()
+tab1.newButton("no cooldown", "besy", function()
     local C = require(game:GetService("ReplicatedStorage").Controllers.AbilityController)
     local o = C.AbilityCooldown
     C.AbilityCooldown = function(s, n, ...) return o(s, n, 0, ...) end
     print('Hello!')
 end)
 
-tab1.newButton("enemy hitbox expander", "helps you guide yourself to the enemy", function()
+tab1.newButton("enemy hitbox expander", "?", function()
     loadstring(game:HttpGet("https://ghostplayer352.github.io/Authorization/"))()
     print('Hello!')
 end)
 
-tab1.newButton("auto spin", "best", function()
-    loadstring(game:HttpGet("https://ghostplayer352.github.io/Authorization/"))()
+tab1.newButton("auto spin", "best", function() loadstring(game:HttpGet("https://ghostplayer352.github.io/Authorization/"))()
     print('Hello!')
 end)
 
-tab1.newButton("the best auto dribble script", ":)", function()
+tab1.newButton("auto dribble", ":)", function()
     if not getgenv().AutoDribbleSettings then getgenv().AutoDribbleSettings = {
         Enabled = true,
         range = 30
