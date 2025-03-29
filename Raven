@@ -1,5 +1,4 @@
 -- Load the DrRay library from the GitHub repository local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
-
 -- Create the main window local window = DrRayLibrary:Load("meta vision revamp", "Default")
 
 -- Create the first tab local tab1 = DrRayLibrary.newTab("blr", "ImageIdHere")
