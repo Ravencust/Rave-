@@ -187,7 +187,7 @@ end)
 -- Create the fourth tab
 local tab3 = DrRayLibrary.newTab("universal", "ImageIdHere")
 
-tab4.newButton("script searcher", "Prints Hello!", function()
+tab3.newButton("script searcher", "Prints Hello!", function()
  loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/ScriptSearcher"))()
     print('Hello!')
 end)
