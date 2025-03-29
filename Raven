@@ -7,11 +7,6 @@ local window = DrRayLibrary:Load("meta vision revamp", "Default")
 -- Create the first tab
 local tab1 = DrRayLibrary.newTab("blue lock", "ImageIdHere")
 
-tab1.newButton("ghost hub", "credits to ghostplayer", function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub'))()
-    print('Hello!')
-end)
-
 tab1.newButton("no cooldown", "best for trolling", function()
     local C = require(game:GetService("ReplicatedStorage").Controllers.AbilityController)
     local o = C.AbilityCooldown
