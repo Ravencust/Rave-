@@ -1,4 +1,4 @@
---- Load the DrRay library from the GitHub repository
+-- Load the DrRay library from the GitHub repository
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
 
 -- Create the main window
@@ -15,11 +15,13 @@ tab1.newButton("no cooldown", "besy", function()
 end)
 
 tab1.newButton("auto dribble", ":)", function()
-    if not getgenv().AutoDribbleSettings then getgenv().AutoDribbleSettings = {
-        Enabled = true,
-        range = 30
-    }
+    if not getgenv().AutoDribbleSettings then
+        getgenv().AutoDribbleSettings = {
+            Enabled = true,
+            range = 30
+        }
     end
+
     local S, R, P, U = getgenv().AutoDribbleSettings, game:GetService("ReplicatedStorage"), game:GetService("Players"), game:GetService("RunService")
     local L = P.LocalPlayer or P.PlayerAdded:Wait()
     local function i()
@@ -82,11 +84,9 @@ tab1.newButton("auto dribble", ":)", function()
 end)
 
 tab1.newButton("sae", "Prints Hello!", function()
----sae
-loadstring(game:HttpGet("https://ghostplayer352.github.io/Authorization/"))()Ioad("7706465e03bbc83a9fd2762463b8c066")
+    loadstring(game:HttpGet("https://ghostplayer352.github.io/Authorization/"))()
     print('Hello!')
 end)
-
 
 -- Create the second tab
 local tab2 = DrRayLibrary.newTab("tsb script", "ImageIdHere")
@@ -94,7 +94,7 @@ local tab2 = DrRayLibrary.newTab("tsb script", "ImageIdHere")
 tab2.newButton("auto block", "credits to notpaki", function()
     getgenv().GeneralDistance = 14
     getgenv().SpecialDistance = 30
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Cyborg883/AutoBlock/refs/heads/main/Notpaki"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Cyborg883/AutoBlock/main/Notpaki"))()
     print('Hello!')
 end)
 
@@ -163,19 +163,16 @@ end)
 local tab4 = DrRayLibrary.newTab("new", "ImageIdHere")
 
 tab4.newButton("shoot far", "bt zero", function()
-loadstring(game:HttpGet("https://gist.githubusercontent.com/mellamonano/bf1834f3fd8c0cb7d69e5c21eb6c014a/raw/f91cf5097834be21442554c577082ef2298f9ae9/gistfile1.txt",true))()
+    loadstring(game:HttpGet("https://gist.githubusercontent.com/mellamonano/bf1834f3fd8c0cb7d69e5c21eb6c014a/raw/f91cf5097834be21442554c577082ef2298f9ae9/gistfile1.txt", true))()
     print('Hello!')
 end)
 
-tab3.newButton("script searcher", "Prints Hello!", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/ScriptSearcher"))()
+tab4.newButton("script searcher", "Prints Hello!", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/ScriptSearcher"))()
     print('Hello!')
 end)
 
 tab4.newButton("control ball", "fun", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Ravencust/Rave-/refs/heads/main/Poruk%20v2", true))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Ravencust/Rave-/main/Poruk%20v2", true))()
     print('Hello!')
 end)
-
-
-
-
