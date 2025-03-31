@@ -176,3 +176,136 @@ tab4.newButton("control ball", "fun", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Ravencust/Rave-/main/Poruk%20v2", true))()
     print('Hello!')
 end)
+
+tab1.newButton("control upd", "blr", function()
+local players = game:GetService("Players")
+local localPlayer = players.LocalPlayer
+local runService = game:GetService("RunService")
+local userInputService = game:GetService("UserInputService")
+local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local currentCamera = workspace.CurrentCamera
+local animator = humanoid:WaitForChild("Animator")
+local animation = Instance.new("Animation")
+animation.AnimationId = "rbxassetid://125865269944406"
+local loadedAnimation = animator:LoadAnimation(animation)
+
+local isControlActive = false
+local defaultSpeed = 100
+local ball
+local bodyVelocity
+local ballConnection
+
+local function findFootball()
+    local football = workspace:FindFirstChild("Football")
+    if football then
+        return football -- Return the Part directly
+    else
+        warn("Football Part not found in workspace.")
+        return nil -- Football Part not found
+    end
+end
+
+local function controlBall()
+    if not ball then return end
+    bodyVelocity = Instance.new("BodyVelocity")
+    bodyVelocity.MaxForce = Vector3.new(1000000, 1000000, 1000000)
+    bodyVelocity.Parent = ball
+    ballConnection = runService.Heartbeat:Connect(function()
+        ball.Velocity = (humanoidRootPart.CFrame.LookVector * defaultSpeed)
+    end)
+end
+
+local function stopControl()
+    if not ball then return end
+    if ballConnection then
+        ballConnection:Disconnect()
+        ballConnection = nil
+    end
+    if bodyVelocity then
+        bodyVelocity:Destroy()
+        bodyVelocity = nil
+    end
+    currentCamera.CameraSubject = character
+end
+
+-- Create and style the Control Ball Ability button
+local function CreateControlBallAbility()
+    local controlButton = localPlayer.PlayerGui.InGameUI.Bottom.Abilities["1"]:Clone()
+    controlButton.Name = "CONTROL_BALL"
+    controlButton.Timer.Text = "CONTROL BALL"
+    controlButton.Keybind.Text = "T"
+    controlButton.Parent = localPlayer.PlayerGui.InGameUI.Bottom.Abilities
+    
+    -- Style the new button (optional)
+    controlButton.BackgroundColor3 = Color3.new(0.2, 0.6, 0.9) -- A nice blue
+    controlButton.BorderSizePixel = 2
+    controlButton.BorderColor3 = Color3.new(0, 0, 0) -- Black border
+
+    -- Add a subtle gradient to the background using UI gradients (if desired)
+    local controlButtonGradient = Instance.new("UIGradient")
+    controlButtonGradient.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.new(0.2, 0.6, 0.9)),
+        ColorSequenceKeypoint.new(1, Color3.new(0.1, 0.4, 0.7))
+    })
+    controlButtonGradient.Rotation = 90
+    controlButtonGradient.Parent = controlButton
+
+    -- Rounded corners with UICorner (for a modern look)
+    local controlButtonCorner = Instance.new("UICorner")
+    controlButtonCorner.CornerRadius = UDim.new(0, 8) -- Adjust radius as needed
+    controlButtonCorner.Parent = controlButton
+
+    -- Add a hover effect (slightly lighten the background)
+    controlButton.MouseEnter:Connect(function()
+        controlButton.BackgroundColor3 = Color3.new(0.3, 0.7, 1)
+    end)
+
+    controlButton.MouseLeave:Connect(function()
+        controlButton.BackgroundColor3 = Color3.new(0.2, 0.6, 0.9)
+    end)
+
+    -- Connect the button click to the control ball function
+    controlButton.MouseButton1Click:Connect(function()
+        -- Trigger control ball ability
+        if not ball then
+            ball = findFootball()
+            if not ball then
+                warn("No Ball Found!")
+                return
+            end
+        end
+        isControlActive = not isControlActive
+        if isControlActive then
+            controlBall()
+        else
+            stopControl()
+        end
+    end)
+
+    -- Optionally, handle keybind activation
+    userInputService.InputBegan:Connect(function(input, gameProcessed)
+        if gameProcessed then return end
+        if input.KeyCode == Enum.KeyCode.T then
+            -- Trigger control ball ability
+            if not ball then
+                ball = findFootball()
+                if not ball then
+                    warn("No Ball Found!")
+                    return
+                end
+            end
+            isControlActive = not isControlActive
+            if isControlActive then
+                controlBall()
+            else
+                stopControl()
+            end
+        end
+    end)
+end
+
+-- Initialize the Control Ball Ability button
+CreateControlBallAbility()
+end)
