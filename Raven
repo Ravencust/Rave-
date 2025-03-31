@@ -102,6 +102,13 @@ tab2.newButton("soon", "Prints Hello!", function()
     print('Hello!')
 end)
 
+
+tab2.newButton("auto block", "notpaki",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Cyborg883/TSB/refs/heads/main/CombatGui"))()
+-- enjoy
+-- Eid Mubarak!!
+end)
+
 -- Create the third tab
 local tab3 = DrRayLibrary.newTab("cw", "ImageIdHere")
 
