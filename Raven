@@ -177,7 +177,8 @@ tab4.newButton("control ball", "fun", function()
     print('Hello!')
 end)
 
-tab1.newButton("control upd", "blr", function()
+
+tab1.newButton("control ball", "upd", function()
 local players = game:GetService("Players")
 local localPlayer = players.LocalPlayer
 local runService = game:GetService("RunService")
@@ -192,7 +193,7 @@ animation.AnimationId = "rbxassetid://125865269944406"
 local loadedAnimation = animator:LoadAnimation(animation)
 
 local isControlActive = false
-local defaultSpeed = 100
+local defaultSpeed = 150 -- Balanced speed
 local ball
 local bodyVelocity
 local ballConnection
@@ -210,10 +211,12 @@ end
 local function controlBall()
     if not ball then return end
     bodyVelocity = Instance.new("BodyVelocity")
-    bodyVelocity.MaxForce = Vector3.new(1000000, 1000000, 1000000)
+    bodyVelocity.MaxForce = Vector3.new(3000000, 3000000, 3000000) -- Balanced MaxForce
+    bodyVelocity.Velocity = Vector3.new(0, 0, 0)
     bodyVelocity.Parent = ball
     ballConnection = runService.Heartbeat:Connect(function()
-        ball.Velocity = (humanoidRootPart.CFrame.LookVector * defaultSpeed)
+        local targetVelocity = humanoidRootPart.CFrame.LookVector * defaultSpeed
+        bodyVelocity.Velocity = bodyVelocity.Velocity:Lerp(targetVelocity, 0.1) -- Smooth transition
     end)
 end
 
@@ -227,6 +230,7 @@ local function stopControl()
         bodyVelocity:Destroy()
         bodyVelocity = nil
     end
+    ball = nil
     currentCamera.CameraSubject = character
 end
 
